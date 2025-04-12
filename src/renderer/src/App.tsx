@@ -1,16 +1,19 @@
 function App(): JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
-
   return (
     <>
-      <div className="actions">
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
+      <ButtonUsage>Send IPC</ButtonUsage>
     </>
+  )
+}
+
+import Button from '@mui/material/Button'
+
+function ButtonUsage({ children }: { children: React.ReactNode }): JSX.Element {
+  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+  return (
+    <Button onClick={ipcHandle} variant="contained">
+      {children}
+    </Button>
   )
 }
 
